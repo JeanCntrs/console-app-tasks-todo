@@ -5,10 +5,14 @@ const { showMenu, pause } = require('./helpers/messages');
 console.clear();
 
 const main = async () => {
-    console.log('Hello world');
+    let opt = '';
 
-    showMenu();
-    //pause();
+    do {
+        opt = await showMenu();
+        console.log({ opt })
+
+        opt !== '0' && await pause();
+    } while (opt !== '0');
 }
 
 main();
