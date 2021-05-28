@@ -1,6 +1,7 @@
 require('colors');
 
 const { inquirerMenu, pause, readInput } = require('./helpers/inquirer');
+const { saveDB } = require('./helpers/saveFile');
 const Tasks = require('./models/tasks');
 
 const main = async () => {
@@ -18,11 +19,13 @@ const main = async () => {
                 break;
 
             case '2':
-                console.log(tasks.list)
+                console.log(tasks.listArr)
                 break;
         }
 
-        /* opt !== '0' && */ await pause();
+        //saveDB(tasks.listArr);
+
+        await pause();
     } while (opt !== '0');
 }
 
