@@ -29,6 +29,38 @@ class Tasks {
 
         this.list[task.id] = task;
     }
+
+    fullList() {
+        console.log('');
+        this.listArr.forEach((task, index) => {
+            const number = `${index + 1}`.green;
+            const { description, completedAt } = task;
+            const state = completedAt ? 'Completado'.green : 'Pendiente'.red;
+
+            console.log(`${number} ${description} :: ${state}`);
+        });
+    }
+
+    listCompletedPending(completed = true) {
+        console.log('');
+        let count = 0;
+        this.listArr.forEach(task => {
+            const { description, completedAt } = task;
+            const state = completedAt ? 'Completado'.green : 'Pendiente'.red;
+
+            if (completed) {
+                if (completedAt) {
+                    count += 1;
+                    console.log(`${count.toString().green} ${description} :: ${completedAt}`)
+                }
+            } else {
+                if (!completedAt) {
+                    count += 1;
+                    console.log(`${count.toString().green} ${description} :: ${state}`)
+                }
+            }
+        });
+    }
 }
 
 module.exports = Tasks;
