@@ -57,13 +57,28 @@ class Tasks {
             if (completed) {
                 if (completedAt) {
                     count += 1;
-                    console.log(`${count.toString().green} ${description} :: ${completedAt}`)
+                    console.log(`${count.toString().green} ${description} :: ${completedAt.green}`)
                 }
             } else {
                 if (!completedAt) {
                     count += 1;
                     console.log(`${count.toString().green} ${description} :: ${state}`)
                 }
+            }
+        });
+    }
+
+    toggleCompleted(ids = []) {
+        ids.forEach(id => {
+            const task = this.list[id];
+            if (!task.completedAt) {
+                task.completedAt = new Date().toISOString();
+            }
+        });
+        console.log(this.listArr)
+        this.listArr.forEach(task => {
+            if (!ids.includes(task.id)) {
+                this.list[task.id].completedAt = null;
             }
         });
     }
